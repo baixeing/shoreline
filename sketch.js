@@ -1,11 +1,12 @@
 const WOBBLE = 1.5;
 const STRETCH = 50;
-const POINTS = 32;
+const POINTS = 16;
 const BASE_RADIUS = 300;
 const RADIUS_RND_FACTOR = 0.2;
-const BLOBS = 64;
+const BLOBS = 10;
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGH = 950;
+const GRADIENT_COLOR_STEPS = 8;
 
 const Blob = class {
     constructor(generation) {
@@ -21,7 +22,7 @@ const Blob = class {
             let r = BASE_RADIUS + random(-RADIUS_RND_FACTOR * BASE_RADIUS, RADIUS_RND_FACTOR * BASE_RADIUS);
 
             let x = cos(a) * r * 3;
-            let y = sin(a) * r / 4;
+            let y = sin(a) * r;
 
             let rand_angle = random(-WOBBLE, WOBBLE);
 
@@ -47,7 +48,7 @@ const Blob = class {
     }
 
     draw = () => {
-        translate(0, random(-CANVAS_HEIGH / 6, CANVAS_HEIGH / 4));
+        translate(0, random(0, CANVAS_HEIGH / 3));
 
         stroke(0);
         strokeWeight(0);
@@ -77,7 +78,7 @@ const Blob = class {
         );
 
         let steps = []
-        Array.apply(null, { length: 4 }).forEach(() => steps.push(color(palette[floor(random(palette.length + 1))])));
+        Array.apply(null, { length: GRADIENT_COLOR_STEPS }).forEach(() => steps.push(color(palette[floor(random(palette.length + 1))])));
         let transparency = random(10, 200 - this.generation);
 
         steps.forEach((c) => c.setAlpha(transparency));
