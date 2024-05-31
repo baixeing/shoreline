@@ -6,7 +6,7 @@ const RADIUS_RND_FACTOR = 0.2;
 const BLOBS = 10;
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGH = 950;
-const GRADIENT_COLOR_STEPS = 8;
+const GRADIENT_COLOR_STEPS = 6;
 
 const Blob = class {
     constructor(generation) {
